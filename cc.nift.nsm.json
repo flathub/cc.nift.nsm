@@ -6,7 +6,8 @@
     "command": "nsm",
     "finish-args": [
         "--filesystem=host",
-        "--share=network"
+        "--share=network",
+        "--talk-name=org.freedesktop.Flatpak"
     ],
     "modules": [
         {
@@ -38,7 +39,7 @@
                     "type": "git",
                     "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
                     "tag": "v1.10",
-                    "commit": "e0467ea2b411ee6258e15f2a9972e17f3f14c8b2"
+                    "commit": "4d7c675732a08ddcfbe5576914d6a302966ef24d"
                 }
             ]
         }
