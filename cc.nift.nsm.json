@@ -1,7 +1,7 @@
 {
     "app-id": "cc.nift.nsm",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "18.08",
+    "runtime-version": "19.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "nsm",
     "finish-args": [
@@ -39,7 +39,7 @@
                     "type": "git",
                     "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
                     "tag": "v1.10",
-                    "commit": "4d7c675732a08ddcfbe5576914d6a302966ef24d"
+                    "commit": "bd90e9f38b6cb952e1dc9b896579422540bd307e"
                 }
             ]
         }
