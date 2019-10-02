@@ -38,8 +38,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
-                    "tag": "v1.12",
-                    "commit": "cd5ced5e6b426d19ffafdaec9865419ca4b54189"
+                    "tag": "v1.13",
+                    "commit": "8f59be87f29cbce8ccc751967c97ec7e6ca8db5f"
                 }
             ]
         }
