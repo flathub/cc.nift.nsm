@@ -9,6 +9,7 @@
         "--share=network",
         "--talk-name=org.freedesktop.Flatpak"
     ],
+    "skip-icons-check": false,
     "modules": [
         {
             "name": "git",
@@ -39,7 +40,7 @@
                     "type": "git",
                     "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
                     "tag": "v2.3.4",
-                    "commit": "53f9cb657de158651142483ac251d8bba40646db"
+                    "commit": "53170eaca606e2f9a80d1efafdb4b8c7e595f282"
                 }
             ]
         },
