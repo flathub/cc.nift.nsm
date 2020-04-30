@@ -33,14 +33,13 @@
         },
         {
             "name": "nsm",
-            "skip-icons-check": true,
             "no-autogen": true,
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
                     "tag": "v2.3.7",
-                    "commit": "044c51e73d25aa3fae768687e98d778c48996e0f"
+                    "commit": "296097449864e65f0a46583ffb6cf601319ba7fb"
                 }
             ]
         },
