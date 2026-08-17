@@ -63,7 +63,7 @@
         {
           "type": "file",
           "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm256.png",
-          "sha256": "23c38f46177315b8f945bd0d0d57e5207037de5edc5b5138c1a6bf4d268f55"
+          "sha256": "23c38f46177315b8f945bd0d0d0d57e5207037de5edc5b5138c1a6bf4d268f55"
         },
         {
           "type": "file",
@@ -74,4 +74,4 @@
     }
   ]
 }
-    
+  
