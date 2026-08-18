@@ -1,68 +1,79 @@
 {
-    "app-id": "cc.nift.nsm",
-    "runtime": "org.freedesktop.Platform",
-    "runtime-version": "25.08",
-    "sdk": "org.freedesktop.Sdk",
-    "command": "nsm",
-    "finish-args": [
-        "--filesystem=host",
-        "--share=network",
-        "--talk-name=org.freedesktop.Flatpak"
-    ],
-    "modules": [
+  "app-id": "cc.nift.nsm",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "25.08",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "nift",
+  "finish-args": [
+    "--filesystem=host",
+    "--share=network"
+  ],
+  "modules": [
+    {
+      "name": "nift",
+      "buildsystem": "simple",
+      "build-commands": [
+        "make -j$FLATPAK_BUILDER_N_JOBS",
+        "make install DESTDIR=/app PREFIX=",
+        "sed -i 's|<url type=\"bugtracker\">https://github.com/nifty-site-manager/nsm-flatpak/issues</url>|<url type=\"bugtracker\">https://github.com/nift-dev/nift/issues</url><url type=\"vcs-browser\">https://github.com/nift-dev/nift</url>|' cc.nift.nsm.appdata.xml",
+        "sed -i 's|<summary>.*</summary>|<summary>Fast dependency-aware website generator</summary>|' cc.nift.nsm.appdata.xml",
+        "sed -i 's|Nift (aka nsm) is a cross-platform open source CLI website generator.|Nift is a production-grade, dependency-aware website generator with fast incremental builds, structured data validation and framework-agnostic output.|' cc.nift.nsm.appdata.xml",
+        "sed -i '/nift.dev\\/support.html/d; s|<developer_name>Nick Ham</developer_name>|<developer id=\"dev.nift\"><name>Nick Ham</name></developer>|' cc.nift.nsm.appdata.xml",
+        "sed -i 's|<icon height=\"128\" width=\"128\">$APPID.png</icon>|<icon type=\"stock\">cc.nift.nsm</icon>|; /<icon height=\"64\"/d' cc.nift.nsm.appdata.xml",
+        "sed -i 's|<launchable|<provides><binary>nift</binary></provides><launchable|' cc.nift.nsm.appdata.xml",
+        "sed -i 's|<releases>|<releases><release version=\"4.0.1\" date=\"2026-08-17\" />|' cc.nift.nsm.appdata.xml",
+        "sed -i '/^Version=/d; s/^Exec=nsm$/Exec=nift/; s/^Categories=.*/Categories=ConsoleOnly;Development;Office;Utility;/; /Name.en_AU./d' cc.nift.nsm.desktop",
+        "install -Dm644 cc.nift.nsm.appdata.xml /app/share/metainfo/cc.nift.nsm.metainfo.xml",
+        "install -Dm644 cc.nift.nsm.desktop /app/share/applications/cc.nift.nsm.desktop",
+        "install -Dm644 cc.nift.nsm64.png /app/share/icons/hicolor/64x64/apps/cc.nift.nsm.png",
+        "install -Dm644 cc.nift.nsm128.png /app/share/icons/hicolor/128x128/apps/cc.nift.nsm.png",
+        "install -Dm644 cc.nift.nsm256.png /app/share/icons/hicolor/256x256/apps/cc.nift.nsm.png",
+        "install -Dm644 cc.nift.nsm512.png /app/share/icons/hicolor/512x512/apps/cc.nift.nsm.png"
+      ],
+      "sources": [
         {
-            "name": "git",
-            "make-args": [
-                "INSTALL_SYMLINKS=1"
-            ],
-            "make-install-args": [
-                "INSTALL_SYMLINKS=1"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.52.0.tar.xz",
-                    "sha256": "3cd8fee86f69a949cb610fee8cd9264e6873d07fa58411f6060b3d62729ed7c5",
-                    "x-checker-data": {
-                        "type": "anitya",
-                        "project-id": 5350,
-                        "stable-only": true,
-                        "url-template": "https://mirrors.edge.kernel.org/pub/software/scm/git/git-$version.tar.xz"
-                    }
-                }
-            ]
+          "type": "archive",
+          "url": "https://github.com/nift-dev/nift/archive/refs/tags/v4.0.1.tar.gz",
+          "sha256": "0724c8e6518ea9ace4275e8f96da39680916d157df1afb4bfbb003678bcdfb52",
+          "x-checker-data": {
+            "type": "json",
+            "url": "https://api.github.com/repos/nift-dev/nift/releases/latest",
+            "version-query": ".tag_name | sub(\"^v\"; \"\")",
+            "url-template": "https://github.com/nift-dev/nift/archive/refs/tags/v$version.tar.gz"
+          }
         },
         {
-            "name": "nsm",
-            "no-autogen": true,
-            "no-parallel-make": true,
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/nifty-site-manager/nsm-flatpak.git",
-                    "tag": "v2.4.12",
-                    "commit": "c6cc086986a38278d0957acaaf6a5f301a8db926"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/nsm-fixes.patch"
-                }
-            ]
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm.appdata.xml",
+          "sha256": "af7fb02d7322a575880ba3679943036948cc05b360f07cb98e53013bb7aa4e65"
         },
         {
-            "name": "luarocks",
-            "no-autogen": true,
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://luarocks.org/releases/luarocks-3.3.0.tar.gz",
-                    "sha256": "8de54eb851f5245ed3708d94d8872e825b9704049d3ad4febe8e219f419b427d"
-                },
-                {
-                    "type": "shell",
-                    "commands": [ "sed -i 's|/usr/local|/app|' ./Makefile" ]
-                }
-            ]
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm.desktop",
+          "sha256": "23ab22413c3b889d07c4d1825ee411f45ee65ada2e8a2d7885a90b283dc083bc"
+        },
+        {
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm64.png",
+          "sha256": "8ecee55e62c3472804d4e2510b81989ea62c7661526f11321fcffe62ec8003f2"
+        },
+        {
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm128.png",
+          "sha256": "3b282375398d3c954cc537ae2cdac5457f81cc1afb8edd9e21efc7acdd5b9e38"
+        },
+        {
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm256.png",
+          "sha256": "23c38f46177315b8f945bd0d0d0d57e5207037de5edc5b5138c1a6bf4d268f55"
+        },
+        {
+          "type": "file",
+          "url": "https://raw.githubusercontent.com/nifty-site-manager/nsm-flatpak/c6cc086986a38278d0957acaaf6a5f301a8db926/cc.nift.nsm512.png",
+          "sha256": "db2efe767407edf1f1820fe6905f12191c4e3a5439324d0af526d64d98c8415a"
         }
-    ]
+      ]
+    }
+  ]
 }
+  
