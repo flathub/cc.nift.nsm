@@ -39,7 +39,7 @@
             "type": "json",
             "url": "https://api.github.com/repos/nift-dev/nift/releases/latest",
             "version-query": ".tag_name | sub(\"^v\"; \"\")",
-            "url-template": "https://github.com/nift-dev/nift/archive/refs/tags/v$version.tar.gz"
+            "url-query": "\"https://github.com/nift-dev/nift/archive/refs/tags/v\" + $version + \".tar.gz\""
           }
         },
         {
